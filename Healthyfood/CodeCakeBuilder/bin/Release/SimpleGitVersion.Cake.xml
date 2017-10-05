@@ -1,0 +1,102 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SimpleGitVersion.Cake</name>
+    </assembly>
+    <members>
+        <member name="T:CodeCake.CakeEnvironmentExtension">
+            <summary>
+            Provides extension methods ro <see cref="T:Cake.Core.ICakeEnvironment"/>.
+            </summary>
+        </member>
+        <member name="M:CodeCake.CakeEnvironmentExtension.SetWorkingDirectory(Cake.Core.ICakeEnvironment,System.String)">
+            <summary>
+            Temporary sets the <see cref="P:Cake.Core.ICakeEnvironment.WorkingDirectory"/>.
+            </summary>
+            <param name="this">This <see cref="T:Cake.Core.ICakeContext"/>.</param>
+            <param name="path">The path to set.</param>
+            <returns>Disposable that reverts the working folder to its original value.</returns>
+        </member>
+        <member name="M:CodeCake.CakeEnvironmentExtension.SetWorkingDirectory(Cake.Core.ICakeEnvironment,Cake.Core.IO.DirectoryPath)">
+            <summary>
+            Temporary sets the <see cref="P:Cake.Core.ICakeEnvironment.WorkingDirectory"/>.
+            </summary>
+            <param name="this">This <see cref="T:Cake.Core.ICakeContext"/>.</param>
+            <param name="path">The path to set.</param>
+            <returns>Disposable that reverts the working folder to its original value.</returns>
+        </member>
+        <member name="T:Code.Cake.RunCmdAliases">
+            <summary>
+            Small helper that uses cmd.exe to execute commands.
+            </summary>
+        </member>
+        <member name="M:Code.Cake.RunCmdAliases.RunCmdSuccessful(Cake.Core.ICakeContext,System.String)">
+            <summary>
+            Runs cmd.exe with a command line and throws an exception if the command exits with a result that is not 0.
+            The command line contains both the executable and its parameters.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="commandLine">The command line to execute.</param>
+        </member>
+        <member name="M:Code.Cake.RunCmdAliases.RunCmd(Cake.Core.ICakeContext,System.String,System.Action{System.String})">
+            <summary>
+            Runs cmd.exe with a command line and returns the process result value.
+            The command line contains both the executable and its parameters.
+            </summary>
+            <param name="context">The cake context.</param>
+            <param name="commandLine">The command line to execute.</param>
+            <param name="output">Optional standard output lines collector.</param>
+            <returns>The command exit code. Typically 0 on succes...</returns>
+        </member>
+        <member name="T:SimpleGitVersion.SimpleGitVersionAliases">
+            <summary>
+            Contains functionality related to SimpleGitVersion.
+            </summary>
+        </member>
+        <member name="M:SimpleGitVersion.SimpleGitVersionAliases.GetRepositoryInfo(Cake.Core.ICakeContext,SimpleGitVersion.RepositoryInfoOptions)">
+            <summary>
+            Gets a <see cref="T:SimpleGitVersion.RepositoryInfo"/> immutable object computed from the current head of the Git repository.
+            Use <see cref="M:SimpleGitVersion.SimpleGitVersionAliases.GetSimpleRepositoryInfo(Cake.Core.ICakeContext)"/> to obtain a simpler object.
+            </summary>
+            <param name="context">The Cake context.</param>
+            <param name="options">Optional options.</param>
+            <returns>A RepositoryInformation object.</returns>
+        </member>
+        <member name="M:SimpleGitVersion.SimpleGitVersionAliases.GetSimpleRepositoryInfo(Cake.Core.ICakeContext)">
+            <summary>
+            Gets a <see cref="T:SimpleGitVersion.SimpleRepositoryInfo"/> immutable object computed from the current head of the Git repository.
+            </summary>
+            <param name="context">The Cake context.</param>
+            <returns>A SimpleRepositoryInfo object.</returns>
+        </member>
+        <member name="T:SimpleGitVersion.ToolSettingsSettingsVersionExtension">
+            <summary>
+            Provides AddVersionArguments on <see cref="T:Cake.Common.Tools.MSBuild.MSBuildSettings"/> and <see cref="T:Cake.Common.Tools.DotNetCore.DotNetCoreSettings"/>.
+            </summary>
+        </member>
+        <member name="M:SimpleGitVersion.ToolSettingsSettingsVersionExtension.AddVersionArguments``1(``0,SimpleGitVersion.SimpleRepositoryInfo,System.Action{``0})">
+            <summary>
+            Adds standard version information on <see cref="T:Cake.Common.Tools.DotNetCore.DotNetCoreSettings"/> objects.
+            </summary>
+            <typeparam name="T">Specialized DotNetCoreSettings type.</typeparam>
+            <param name="this">This settings.</param>
+            <param name="info">The repository information.</param>
+            <param name="conf">Optional configuration to apply after version arguments have been injected.</param>
+            <returns>This settings.</returns>
+        </member>
+        <member name="M:SimpleGitVersion.ToolSettingsSettingsVersionExtension.AddVersionArguments(Cake.Common.Tools.MSBuild.MSBuildSettings,SimpleGitVersion.SimpleRepositoryInfo,System.Action{Cake.Common.Tools.MSBuild.MSBuildSettings})">
+            <summary>
+            Adds standard version information on <see cref="T:Cake.Common.Tools.MSBuild.MSBuildSettings"/>.
+            </summary>
+            <param name="this">This settings.</param>
+            <param name="info">The repository information.</param>
+            <param name="conf">Optional configuration to apply after version arguments have been injected.</param>
+            <returns>This settings.</returns>
+        </member>
+        <member name="T:SimpleGitVersionInfoAttribute">
+            <summary>
+            Automatically generated by SimpleGitVersionTask 0.28.0. 
+            </summary>
+        </member>
+    </members>
+</doc>

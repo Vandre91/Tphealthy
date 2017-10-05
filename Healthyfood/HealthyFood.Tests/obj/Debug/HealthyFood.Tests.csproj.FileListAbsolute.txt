@@ -1,0 +1,11 @@
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\HealthyFood.Tests.dll
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\HealthyFood.Tests.pdb
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\Healthyfood.exe
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\nunit.framework.dll
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\StockFood.dll
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\Healthyfood.pdb
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\StockFood.pdb
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\nunit.framework.xml
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\obj\Debug\HealthyFood.Tests.csprojResolveAssemblyReference.cache
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\obj\Debug\HealthyFood.Tests.dll
+C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\obj\Debug\HealthyFood.Tests.pdb

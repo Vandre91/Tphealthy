@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--This file represents the results of running a test suite-->
+<test-results name="C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\HealthyFood.Tests.dll" total="34" errors="0" failures="0" not-run="0" inconclusive="0" ignored="0" skipped="0" invalid="0" date="2016-06-29" time="10:16:08">
+  <environment nunit-version="2.6.4.14350" clr-version="2.0.50727.8689" os-version="Microsoft Windows NT 6.2.9200.0" platform="Win32NT" cwd="C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug" machine-name="VIVI" user="victor" user-domain="VIVI" />
+  <culture-info current-culture="fr-FR" current-uiculture="fr-FR" />
+  <test-suite type="Assembly" name="C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\HealthyFood.Tests.dll" executed="True" result="Success" success="True" time="0.496" asserts="0">
+    <results>
+      <test-suite type="Namespace" name="HealthyFoodTests" executed="True" result="Success" success="True" time="0.482" asserts="0">
+        <results>
+          <test-suite type="TestFixture" name="TCreateRecipe" executed="True" result="Success" success="True" time="0.223" asserts="0">
+            <results>
+              <test-case name="HealthyFoodTests.TCreateRecipe.AddHealthyrecipe_with_correct_list" executed="True" result="Success" success="True" time="0.139" asserts="2" />
+              <test-case name="HealthyFoodTests.TCreateRecipe.AddHealthyrecipe_with_correct_name" executed="True" result="Success" success="True" time="0.011" asserts="5" />
+              <test-case name="HealthyFoodTests.TCreateRecipe.AddWorldRecipe_with_correct_list" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+              <test-case name="HealthyFoodTests.TCreateRecipe.AddWorldrecipe_with_correct_name" executed="True" result="Success" success="True" time="0.002" asserts="5" />
+              <test-case name="HealthyFoodTests.TCreateRecipe.AddYourRecipe_with_correct_list" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+              <test-case name="HealthyFoodTests.TCreateRecipe.AddYourrecipe_with_correct_name" executed="True" result="Success" success="True" time="0.002" asserts="5" />
+              <test-case name="HealthyFoodTests.TCreateRecipe.test_description" executed="True" result="Success" success="True" time="0.002" asserts="6" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="TCreateUsers" executed="True" result="Success" success="True" time="0.091" asserts="0">
+            <results>
+              <test-case name="HealthyFoodTests.TCreateUsers.create_five_users_max" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+              <test-case name="HealthyFoodTests.TCreateUsers.create_or_modify__a_user_with_a_different_name_and_first_name_of_another_user" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+              <test-case name="HealthyFoodTests.TCreateUsers.create_or_modify_user_with_correct_age" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+              <test-case name="HealthyFoodTests.TCreateUsers.create_or_modify_user_with_correct_firstname" executed="True" result="Success" success="True" time="0.010" asserts="11" />
+              <test-case name="HealthyFoodTests.TCreateUsers.create_or_modify_user_with_correct_lastname" executed="True" result="Success" success="True" time="0.002" asserts="4" />
+              <test-case name="HealthyFoodTests.TCreateUsers.create_user_with_correct_height" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+              <test-case name="HealthyFoodTests.TCreateUsers.create_user_with_correct_weight" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+              <test-case name="HealthyFoodTests.TCreateUsers.find_users" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+              <test-case name="HealthyFoodTests.TCreateUsers.imc" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="HealthyFoodTests.TCreateUsers.modify_created_users" executed="True" result="Success" success="True" time="0.009" asserts="21" />
+              <test-case name="HealthyFoodTests.TCreateUsers.modify_isfemale_and_isvegeterian" executed="True" result="Success" success="True" time="0.001" asserts="2" />
+              <test-case name="HealthyFoodTests.TCreateUsers.remove_users" executed="True" result="Success" success="True" time="0.002" asserts="2" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="TRecipesManagement" executed="True" result="Success" success="True" time="0.078" asserts="0">
+            <results>
+              <test-case name="HealthyFoodTests.TRecipesManagement.AddHealthyrecipe_already_exists_and_find_Recipes" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="HealthyFoodTests.TRecipesManagement.AddWorldRecipe_already_exists_and_find_Recipes" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="HealthyFoodTests.TRecipesManagement.AddYourRecipe_already_exists_and_find_Recipes" executed="True" result="Success" success="True" time="0.001" asserts="1" />
+              <test-case name="HealthyFoodTests.TRecipesManagement.FindHealthyRecipe_correctly" executed="True" result="Success" success="True" time="0.003" asserts="6" />
+              <test-case name="HealthyFoodTests.TRecipesManagement.FindWorldRecipe_correctly" executed="True" result="Success" success="True" time="0.003" asserts="6" />
+              <test-case name="HealthyFoodTests.TRecipesManagement.FindYourRecipe_correctly" executed="True" result="Success" success="True" time="0.003" asserts="6" />
+              <test-case name="HealthyFoodTests.TRecipesManagement.RemoveHealthyRecipe_correctly" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+              <test-case name="HealthyFoodTests.TRecipesManagement.RemoveWorldRecipe_correctly" executed="True" result="Success" success="True" time="0.001" asserts="3" />
+              <test-case name="HealthyFoodTests.TRecipesManagement.RemoveYourRecipe_correctly" executed="True" result="Success" success="True" time="0.002" asserts="3" />
+            </results>
+          </test-suite>
+          <test-suite type="TestFixture" name="TStocks" executed="True" result="Success" success="True" time="0.065" asserts="0">
+            <results>
+              <test-case name="HealthyFoodTests.TStocks.Add_ingredient_which_already_exist" executed="True" result="Success" success="True" time="0.005" asserts="1" />
+              <test-case name="HealthyFoodTests.TStocks.Add_ingredient_with_correct_balance_and_expiration_date" executed="True" result="Success" success="True" time="0.002" asserts="6" />
+              <test-case name="HealthyFoodTests.TStocks.Add_ingredient_with_correct_category" executed="True" result="Success" success="True" time="0.005" asserts="6" />
+              <test-case name="HealthyFoodTests.TStocks.Add_ingredient_with_correct_name" executed="True" result="Success" success="True" time="0.006" asserts="5" />
+              <test-case name="HealthyFoodTests.TStocks.Reduce_ingredient_correctly" executed="True" result="Success" success="True" time="0.007" asserts="5" />
+              <test-case name="HealthyFoodTests.TStocks.Remove_ingredient_correctly" executed="True" result="Success" success="True" time="0.004" asserts="4" />
+            </results>
+          </test-suite>
+        </results>
+      </test-suite>
+    </results>
+  </test-suite>
+</test-results>

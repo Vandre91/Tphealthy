@@ -1,0 +1,4 @@
+C:\Users\victor\Documents\Healthyfood\Healthyfood\StockFood\bin\Release\StockFood.dll
+C:\Users\victor\Documents\Healthyfood\Healthyfood\StockFood\bin\Release\StockFood.pdb
+C:\Users\victor\Documents\Healthyfood\Healthyfood\StockFood\obj\Release\StockFood.dll
+C:\Users\victor\Documents\Healthyfood\Healthyfood\StockFood\obj\Release\StockFood.pdb

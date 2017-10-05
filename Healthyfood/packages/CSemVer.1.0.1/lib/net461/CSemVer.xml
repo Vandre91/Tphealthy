@@ -1,0 +1,876 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CSemVer</name>
+    </assembly>
+    <members>
+        <member name="T:CSemVer.CIBuildDescriptor">
+            <summary>
+            Encapsulates CSemVer-CI suffix formatting.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CIBuildDescriptor.MaxNuGetV2BuildIndex">
+            <summary>
+            Defines the maximal build index.
+            This is required to be able to pad it with a constant number of '0'.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CIBuildDescriptor.BuildIndex">
+            <summary>
+            Gets or sets the build index. Must be greater or equal to 0.
+            To be valid for NuGetV2, it must not exceed <see cref="F:CSemVer.CIBuildDescriptor.MaxNuGetV2BuildIndex"/>.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CIBuildDescriptor.BranchName">
+            <summary>
+            Gets or set the branch name to use.
+            When null or empty, this descriptor is not applicable.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CIBuildDescriptor.IsValid">
+            <summary>
+            Gets whether this descriptor can be applied.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CIBuildDescriptor.IsValidForNuGetV2">
+            <summary>
+            Gets whether this descriptor can be applied for NuGetV2 special name case.
+            </summary>
+        </member>
+        <member name="M:CSemVer.CIBuildDescriptor.ToString">
+            <summary>
+            Overridden to return "ci-<see cref="P:CSemVer.CIBuildDescriptor.BranchName"/>.<see cref="P:CSemVer.CIBuildDescriptor.BuildIndex"/>" when <see cref="P:CSemVer.CIBuildDescriptor.IsValid"/> is true,
+            the empty string otherwise.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSemVer.CIBuildDescriptor.ToStringForNuGetV2">
+            <summary>
+            When <see cref="P:CSemVer.CIBuildDescriptor.IsValidForNuGetV2"/> is true, returns "<see cref="P:CSemVer.CIBuildDescriptor.BranchName"/>-<see cref="P:CSemVer.CIBuildDescriptor.BuildIndex"/>" where 
+            the index is padded with 0, the empty string otherwise.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:CSemVer.CSVersion">
+            <summary>
+            CSemVer version follows [v|V]Major.Minor.Patch[-PreReleaseName.PreReleaseNumber[.PreReleaseFix]] pattern.
+            This is a semantic version, this is the version associated to a commit 
+            in the repository.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.Major">
+            <summary>
+            When <see cref="P:CSemVer.CSVersion.IsValidSyntax"/> is true, necessarily greater or equal to 0.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.Minor">
+            <summary>
+            When <see cref="P:CSemVer.CSVersion.IsValidSyntax"/> is true, necessarily greater or equal to 0.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.Patch">
+            <summary>
+            When <see cref="P:CSemVer.CSVersion.IsValidSyntax"/> is true, necessarily greater or equal to 0.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.PreReleaseNameFromTag">
+            <summary>
+            When <see cref="P:CSemVer.CSVersion.IsValidSyntax"/> is true, necessarily not null: empty string for a release.
+            This is the pre release name directly extracted from the text. This field does not participate to equality or comparison: 
+            the actual, standardized, pre release name field is <see cref="P:CSemVer.CSVersion.PreReleaseName"/>.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.PreReleaseName">
+            <summary>
+            Gets the standard pre release name among <see cref="P:CSemVer.CSVersion.StandardPreReleaseNames"/>.
+            <see cref="F:System.String.Empty"/> when this is not a pre release version.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.IsPreRelease">
+            <summary>
+            Gets whether this is a pre release.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.PreReleaseNameIdx">
+            <summary>
+            When <see cref="P:CSemVer.CSVersion.IsPreRelease"/> is true, the this is between 0 ('alpha') and <see cref="F:CSemVer.CSVersion.MaxPreReleaseNameIdx"/> ('rc')
+            otherwise this is -1.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.IsPreReleaseNameStandard">
+            <summary>
+            Gets whether the <see cref="F:CSemVer.CSVersion.PreReleaseNameFromTag"/> is a standard one (always false when <see cref="P:CSemVer.CSVersion.IsPreRelease"/> is false).
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.PreReleaseNumber">
+            <summary>
+            Meaningful only if <see cref="P:CSemVer.CSVersion.IsPreRelease"/> is true (0 when not in prerelease). Between 0 and <see cref="F:CSemVer.CSVersion.MaxPreReleaseNumber"/>. 
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.PreReleasePatch">
+            <summary>
+            When <see cref="P:CSemVer.CSVersion.IsPreReleasePatch"/>, a number between 1 and <see cref="F:CSemVer.CSVersion.MaxPreReleaseFix"/>, otherwise 0. 
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.IsPreReleasePatch">
+            <summary>
+            Gets whether this is a pre release patch (<see cref="P:CSemVer.CSVersion.IsPreRelease"/> is necessarily true): <see cref="F:CSemVer.CSVersion.PreReleasePatch"/> number is greater than 0.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.IsPatch">
+            <summary>
+            Gets whether this is a patch: either <see cref="F:CSemVer.CSVersion.Patch"/> or <see cref="F:CSemVer.CSVersion.PreReleasePatch"/> are greater than 0.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.Marker">
+            <summary>
+            Gets the "+invalid" marker.
+            Normalized in lowercase and <see cref="F:System.String.Empty"/> when <see cref="P:CSemVer.CSVersion.IsMarkedInvalid"/> is false.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.IsValidSyntax">
+            <summary>
+            Gets whether this <see cref="T:CSemVer.CSVersion"/> is syntaxically valid.
+            When false, <see cref="P:CSemVer.CSVersion.IsMalformed"/> may be true if the <see cref="F:CSemVer.CSVersion.OriginalParsedText"/> somehow looks 
+            like a version.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.IsMalformed">
+            <summary>
+            Gets whether this <see cref="T:CSemVer.CSVersion"/> looks like a release tag but is not syntaxically valid: 
+            see <see cref="F:CSemVer.CSVersion.ParseErrorMessage"/> for more information.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.IsMarkedInvalid">
+            <summary>
+            Gets whether this <see cref="T:CSemVer.CSVersion"/> is marked with +invalid.
+            This is the strongest form for a version: a +invalid marked version MUST annihilate any same version
+            when they both appear on a commit.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.DefinitionStrength">
+            <summary>
+            Gets the strength of this version: an invalid version has a strength of 0. 
+            For valid version, the same version in terms of <see cref="P:CSemVer.CSVersion.OrderedVersion"/> can be expressed with: 
+            a <see cref="P:CSemVer.CSVersion.IsPreReleaseNameStandard"/> (stronger than a non standard 'prerelease' one), 
+            and ultimately, a <see cref="P:CSemVer.CSVersion.IsMarkedInvalid"/> wins.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.Kind">
+            <summary>
+            The kind of version. 
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.ParseErrorMessage">
+            <summary>
+            An error message that describes the error if <see cref="P:CSemVer.CSVersion.IsValidSyntax"/> is false. Null otherwise.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.OriginalParsedText">
+            <summary>
+            The original text.
+            Null when this has been not been built from parsing (via <see cref="M:CSemVer.CSVersion.#ctor(System.Int64)"/> constructor or
+            from a successor or a predecessor).
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.EmptyArray">
+            <summary>
+            Gets the empty array singleton.
+            </summary>
+        </member>
+        <member name="M:CSemVer.CSVersion.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.String,System.Int32,System.Int32,System.Int32,CSemVer.CSVersionKind)">
+            <summary>
+            Private full constructor. Used by <see cref="M:CSemVer.CSVersion.TryParse(System.String,System.Boolean)"/> and methods like <see cref="M:CSemVer.CSVersion.GetDirectSuccessors(System.Boolean,CSemVer.CSVersion)"/>.
+            </summary>
+            <param name="s">Original text version. Can be null.</param>
+            <param name="major">Major (between 0 and 99999).</param>
+            <param name="minor">Minor (between 0 and 99999).</param>
+            <param name="patch">Patch (between 0 and 9999).</param>
+            <param name="preReleaseName">Not null (empty for release). Can be any string [a-z]*.</param>
+            <param name="preReleaseNameIdx">The index in StandardPreReleaseNames.</param>
+            <param name="preReleaseNumber">Number between 0 (for release or first prerelease) and 99.</param>
+            <param name="preReleaseFix">Number between 0 (not a fix, first actual fix starts at 1) and 99.</param>
+            <param name="kind">One of the <see cref="T:CSemVer.CSVersionKind"/> value. Must be coherent with the other parameters.</param>
+        </member>
+        <member name="M:CSemVer.CSVersion.MarkInvalid">
+            <summary>
+            Creates a clone of this version, except that it is marked with "+invalid".
+            This version must be valid (<see cref="P:CSemVer.CSVersion.IsValidSyntax"/> is true), otherwise an <see cref="T:System.InvalidOperationException"/> is thrown.
+            </summary>
+            <returns>The "+valid" tag.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.GetDirectSuccessors(System.Boolean)">
+            <summary>
+            Computes the next possible ordered versions, from the closest one to the biggest possible bump.
+            If <see cref="P:CSemVer.CSVersion.IsValidSyntax"/> is false, the list is empty.
+            </summary>
+            <param name="patchesOnly">True to obtain only patches to this version. False to generate the full list of valid successors (up to 43 successors).</param>
+            <returns>Next possible versions.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.IsDirectPredecessor(CSemVer.CSVersion)">
+            <summary>
+            Computes whether the given version belongs to the set or predecessors.
+            </summary>
+            <param name="previous">Previous version. Can be null.</param>
+            <returns>True if previous is actually a direct predecessor.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.GetDirectSuccessors(System.Boolean,CSemVer.CSVersion)">
+            <summary>
+            This static version handles null <paramref name="version"/> (the next versions are always <see cref="F:CSemVer.CSVersion.FirstPossibleVersions"/>).
+            If the version is not valid or it it is <see cref="F:CSemVer.CSVersion.VeryLastVersion"/>, the list is empty.
+            </summary>
+            <param name="version">Any version (can be null).</param>
+            <param name="patchesOnly">True to obtain only patches to the version. False to generate the full list of valid successors (up to 43 successors).</param>
+            <returns>The direct successors.</returns>
+        </member>
+        <member name="F:CSemVer.CSVersion.MaxMajor">
+            <summary>
+            The maximum number of major versions.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.MaxMinor">
+            <summary>
+            The maximum number of minor versions for a major one.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.MaxPatch">
+            <summary>
+            The maximum number of patches for a minor one.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.MaxPreReleaseNameIdx">
+            <summary>
+            The maximum number of prereleaseis also the index of the "rc" entry in <see cref="P:CSemVer.CSVersion.StandardPreReleaseNames"/>.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.MaxPreReleaseNumber">
+            <summary>
+            The maximum number of pre-releases.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.MaxPreReleaseFix">
+            <summary>
+            The maximum number of fixes to a pre-release.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.StandardPreReleaseNames">
+            <summary>
+            Gets the standard <see cref="P:CSemVer.CSVersion.PreReleaseName"/>.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.VeryFirstVersion">
+            <summary>
+            Gets the very first possible version (0.0.0-alpha).
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.FirstPossibleVersions">
+            <summary>
+            Gets the very first possible release versions (0.0.0, 0.1.0 or 1.0.0 or any prereleases of them).
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersion.VeryLastVersion">
+            <summary>
+            Gets the very last possible version.
+            </summary>
+        </member>
+        <member name="M:CSemVer.CSVersion.#ctor(System.Int64)">
+            <summary>
+            Initializes a new version from an ordered version that must be between 0 (invalid version) and <see cref="F:CSemVer.CSVersion.VeryLastVersion"/>.<see cref="P:CSemVer.CSVersion.OrderedVersion"/>.
+            </summary>
+            <param name="v">The ordered version.</param>
+        </member>
+        <member name="P:CSemVer.CSVersion.OrderedVersion">
+            <summary>
+            Gets the ordered version number.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.OrderedVersionMajor">
+            <summary>
+            Gets the Major (first, most significant) part of the <see cref="P:CSemVer.CSVersion.OrderedVersion"/>: between 0 and 32767.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.OrderedVersionMinor">
+            <summary>
+            Gets the Minor (second) part of the <see cref="P:CSemVer.CSVersion.OrderedVersion"/>: between 0 and 65535.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.OrderedVersionBuild">
+            <summary>
+            Gets the Build (third) part of the <see cref="P:CSemVer.CSVersion.OrderedVersion"/>: between 0 and 65535.
+            </summary>
+        </member>
+        <member name="P:CSemVer.CSVersion.OrderedVersionRevision">
+            <summary>
+            Gets the Revision (last, less significant) part of the <see cref="P:CSemVer.CSVersion.OrderedVersion"/>: between 0 and 65535.
+            </summary>
+        </member>
+        <member name="M:CSemVer.CSVersion.Equals(CSemVer.CSVersion)">
+            <summary>
+            Versions are equal if their <see cref="P:CSemVer.CSVersion.OrderedVersion"/> are equals.
+            No other members are used for equality and comparison.
+            </summary>
+            <param name="other">Other version.</param>
+            <returns>True if they have the same OrderedVersion.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.CompareTo(CSemVer.CSVersion)">
+            <summary>
+            Relies only on <see cref="P:CSemVer.CSVersion.OrderedVersion"/>.
+            </summary>
+            <param name="other">Other release tag (can be null).</param>
+            <returns>A signed number indicating the relative values of this instance and <paramref name="other"/>.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.op_Equality(CSemVer.CSVersion,CSemVer.CSVersion)">
+            <summary>
+            Implements == operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if they are equal.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.op_GreaterThan(CSemVer.CSVersion,CSemVer.CSVersion)">
+            <summary>
+            Implements &gt; operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if x is greater than y.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.op_GreaterThanOrEqual(CSemVer.CSVersion,CSemVer.CSVersion)">
+            <summary>
+            Implements &gt;= operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if x is greater than or equal to y.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.op_Inequality(CSemVer.CSVersion,CSemVer.CSVersion)">
+            <summary>
+            Implements != operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if they are not equal.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.op_LessThanOrEqual(CSemVer.CSVersion,CSemVer.CSVersion)">
+            <summary>
+            Implements &lt;= operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if x is lower than or equal to y.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.op_LessThan(CSemVer.CSVersion,CSemVer.CSVersion)">
+            <summary>
+            Implements &lt; operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if x is lower than y.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.Equals(System.Object)">
+            <summary>
+            Version are equal it their <see cref="P:CSemVer.CSVersion.OrderedVersion"/> are equals.
+            No other members are used for equality and comparison.
+            </summary>
+            <param name="obj">Other release version.</param>
+            <returns>True if obj is a version that has the same OrderedVersion as this.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.GetHashCode">
+            <summary>
+            Versions are equal it their <see cref="P:CSemVer.CSVersion.OrderedVersion"/> are equals.
+            No other members are used for equality and comparison.
+            </summary>
+            <returns>True if they have the same OrderedVersion.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.#ctor(System.String,System.Boolean,System.String)">
+            <summary>
+            Initializes a new invalid Version from a failed parsing.
+            </summary>
+            <param name="s">The syntaxically invalid version.</param>
+            <param name="isMalformed">True if it looks like a version but is actually not one. False if the text does not look like a version.</param>
+            <param name="errorMessage">Required error message.</param>
+        </member>
+        <member name="M:CSemVer.CSVersion.Parse(System.String)">
+            <summary>
+            Parses the specified string to a constrained semantic version and throws an <see cref="T:System.ArgumentException"/> 
+            it the resulting <see cref="T:CSemVer.SVersion"/> is not <see cref="P:CSemVer.CSVersion.IsValidSyntax"/>.
+            </summary>
+            <param name="s">The string to parse.</param>
+            <returns>The SVersion object.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.TryParse(System.String,System.Boolean)">
+            <summary>
+            Attempts to parse a string like "4.0.0", "1.0-5-alpha.0", "1.0-5-rc.12.87" and returns a <see cref="T:CSemVer.CSVersion"/>
+            that may not be <see cref="P:CSemVer.CSVersion.IsValidSyntax"/>.
+            Initial 'v' (or 'V') is optional (GitHub convention).
+            Numbers can not start with a 0 (except if it is 0).
+            The pre release name (alpha, beta, gamma, ..., rc) must be any number of a-z (all lower case, no digit nor underscore).
+            The pre release name can be followed by ".0" or a greater number (not greater than <see cref="F:CSemVer.CSVersion.MaxPreReleaseNumber"/>). 
+            Returns a Version where <see cref="P:CSemVer.CSVersion.IsValidSyntax"/> is false if the string is not valid: <see cref="F:CSemVer.CSVersion.ParseErrorMessage"/>
+            gives more information.
+            </summary>
+            <param name="s">String to parse.</param>
+            <param name="analyseInvalidTag">
+            True to analyse an invalid string for a more precise error: 
+            if the tag looks like a release tag, the <see cref="F:CSemVer.CSVersion.ParseErrorMessage"/> will describe the issue.
+            </param>
+            <returns>Resulting version (may not be <see cref="P:CSemVer.CSVersion.IsValidSyntax"/>).</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.GetPreReleaseNameIdx(System.String)">
+            <summary>
+            Computes the pre release name index ('alpha' is 0, 'rc' is <see cref="F:CSemVer.CSVersion.MaxPreReleaseNameIdx"/>).
+            This is -1 if the pre release name is empty (an empty pre release name defines a release).
+            The lookup into <see cref="P:CSemVer.CSVersion.StandardPreReleaseNames"/> is case sensitive.
+            Any unmatched pre release name is <see cref="F:CSemVer.CSVersion.MaxPreReleaseNameIdx"/> - 1 ('prerelease', the last one before 'rc').
+            </summary>
+            <param name="preReleaseName">Pre release name.</param>
+            <returns>Index between -1 (release) and MaxPreReleaseNameIdx.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.TryParse(System.String,CSemVer.CSVersion@)">
+            <summary>
+            Standard TryParse pattern that returns a boolean rather than the resulting <see cref="T:CSemVer.CSVersion"/>. See <see cref="M:CSemVer.CSVersion.TryParse(System.String,System.Boolean)"/>.
+            </summary>
+            <param name="s">String to parse.</param>
+            <param name="v">Resulting version.</param>
+            <returns>True on success, false otherwise.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.ToString">
+            <summary>
+            Gets the string version in <see cref="F:CSemVer.CSVersionFormat.Normalized"/> format ('v' + <see cref="F:CSemVer.CSVersionFormat.SemVerWithMarker"/>).
+            Returns the <see cref="F:CSemVer.CSVersion.ParseErrorMessage"/> if it is not null.
+            </summary>
+            <returns>Formated string (or <see cref="F:CSemVer.CSVersion.ParseErrorMessage"/> if any).</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.ToStringFileVersion(System.Boolean)">
+            <summary>
+            Gets this version in a <see cref="F:CSemVer.CSVersionFormat.FileVersion"/> format.
+            </summary>
+            <param name="isCIBuild">True to indicate a CI build: the revision part (last part) is odd.</param>
+            <returns>The Major.Minor.Build.Revision number where each part are between 0 and 65535.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.ToString(CSemVer.CSVersionFormat,CSemVer.CIBuildDescriptor,System.Boolean)">
+            <summary>
+            Gets the string version in the given format.
+            Returns the <see cref="F:CSemVer.CSVersion.ParseErrorMessage"/> if it is not null.
+            </summary>
+            <param name="f">Format to use.</param>
+            <param name="buildInfo">Not null to generate a post-release version.</param>
+            <param name="usePreReleaseNameFromTag">True to use <see cref="F:CSemVer.CSVersion.PreReleaseNameFromTag"/> instead of standardized <see cref="P:CSemVer.CSVersion.PreReleaseName"/>.</param>
+            <returns>Formated string (or <see cref="F:CSemVer.CSVersion.ParseErrorMessage"/> if any).</returns>
+        </member>
+        <member name="M:CSemVer.CSVersion.GetInformationalVersion(System.String,System.DateTime,CSemVer.CIBuildDescriptor)">
+            <summary>
+            Gets the standard Informational version string.
+            If <see cref="P:CSemVer.CSVersion.IsValidSyntax"/> is false this throws an <see cref="T:System.InvalidOperationException"/>: 
+            the constant <see cref="F:CSemVer.InformationalVersion.ZeroInformationalVersion"/> should be used when IsValid is false.
+            </summary>
+            <param name="commitSha">The SHA1 of the commit (must be 40 hex digits).</param>
+            <param name="commitDateUtc">The commit date (must be in UTC).</param>
+            <param name="buildInfo">
+            Not null for post-release version. 
+            <see cref="P:CSemVer.CIBuildDescriptor.IsValid"/> and <see cref="P:CSemVer.CIBuildDescriptor.IsValidForNuGetV2"/> must be true.
+            </param>
+            <returns>The informational version.</returns>
+        </member>
+        <member name="T:CSemVer.CSVersionFormat">
+            <summary>
+            Format description for <see cref="M:CSemVer.CSVersion.ToString(CSemVer.CSVersionFormat,CSemVer.CIBuildDescriptor,System.Boolean)"/>.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionFormat.Normalized">
+            <summary>
+            Normalized format is 'v' + <see cref="F:CSemVer.CSVersionFormat.SemVerWithMarker"/>.
+            This is the default.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionFormat.SemVer">
+            <summary>
+            Semantic version format.
+            The prerelease name is the standard one (ie. 'prerelease' for any unknown name) and there is no build meata data.
+            This includes <see cref="T:CSemVer.CIBuildDescriptor"/> if an applicable one is provided.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionFormat.SemVerWithMarker">
+            <summary>
+            Semantic version format.
+            The prerelease name is the standard one (ie. 'prerelease' for any unknown name) plus build meata data (+invalid).
+            This includes <see cref="T:CSemVer.CIBuildDescriptor"/> if an applicable one is provided.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionFormat.FileVersion">
+            <summary>
+            The file version (see https://msdn.microsoft.com/en-us/library/system.diagnostics.fileversioninfo.fileversion.aspx)
+            uses the whole 64 bits: it is the <see cref="P:CSemVer.CSVersion.OrderedVersion"/> left shifted by 1 bit with 
+            the less significant bit set to 0 for release and 1 CI builds.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionFormat.NugetPackageV2">
+            <summary>
+            NuGet version 2. This includes <see cref="T:CSemVer.CIBuildDescriptor"/> if an applicable one is provided.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionFormat.NuGetPackage">
+            <summary>
+            NuGet format. Currently <see cref="F:CSemVer.CSVersionFormat.NugetPackageV2"/>.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionFormat.Default">
+            <summary>
+            Default is <see cref="F:CSemVer.CSVersionFormat.Normalized"/>.
+            </summary>
+        </member>
+        <member name="T:CSemVer.CSVersionKind">
+            <summary>
+            Summarizes the different version kind.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionKind.None">
+            <summary>
+            Not a release tag.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionKind.Malformed">
+            <summary>
+            The looks like a version but is syntaxically incorrect.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionKind.OfficialRelease">
+            <summary>
+            This version is 'Major.Minor.Patch' only.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionKind.PreRelease">
+            <summary>
+            This version is 'Major.Minor.Patch-prerelease[.Number[.Fix]]'.
+            </summary>
+        </member>
+        <member name="F:CSemVer.CSVersionKind.MarkedInvalid">
+            <summary>
+            This version is marked with +Invalid.
+            </summary>
+        </member>
+        <member name="T:CSemVer.CSVersionKindExtensions">
+            <summary>
+            Implements <see cref="T:CSemVer.CSVersionKind"/> enum extension methods.
+            </summary>
+        </member>
+        <member name="M:CSemVer.CSVersionKindExtensions.IsMarkedInvalid(CSemVer.CSVersionKind)">
+            <summary>
+            Returns true if this tag is marked with <see cref="F:CSemVer.CSVersionKind.MarkedInvalid"/>.
+            </summary>
+            <param name="this"></param>
+            <returns>True if MarkedInvalid.</returns>
+        </member>
+        <member name="M:CSemVer.CSVersionKindExtensions.ToStringMarker(CSemVer.CSVersionKind,System.Boolean)">
+            <summary>
+            Obtains the marker as a string. <see cref="F:System.String.Empty"/> if this is nor marked.
+            </summary>
+            <param name="this">This <see cref="T:CSemVer.CSVersionKind"/>.</param>
+            <param name="prefixPlus">Optionally removes the '+' build meta separator.</param>
+            <returns>A string with the marker if any.</returns>
+        </member>
+        <member name="T:CSemVer.InformationalVersion">
+            <summary>
+            Parses a standard informational version in order to extract the two <see cref="T:CSemVer.SVersion"/> (the short and long forms), 
+            the <see cref="P:CSemVer.InformationalVersion.CommitSha"/> and the <see cref="P:CSemVer.InformationalVersion.CommitDate"/> if possible.
+            Syntax check is very strict (the <see cref="F:CSemVer.InformationalVersion.Zero"/> string is a sample) and should remain strict. 
+            What is missing in the equivalence check between NuGet and SemVer version: this requires a parse
+            of the NuGet version and it has yet to be done.
+            </summary>
+        </member>
+        <member name="F:CSemVer.InformationalVersion.Zero">
+            <summary>
+            The zero <see cref="T:CSemVer.InformationalVersion"/>.
+            See <see cref="F:CSemVer.InformationalVersion.ZeroInformationalVersion"/>.
+            </summary>
+        </member>
+        <member name="F:CSemVer.InformationalVersion.ZeroAssemblyVersion">
+            <summary>
+            The zero assembly version is "0.0.0".
+            </summary>
+        </member>
+        <member name="F:CSemVer.InformationalVersion.ZeroFileVersion">
+            <summary>
+            The zero file version is "0.0.0.0".
+            </summary>
+        </member>
+        <member name="F:CSemVer.InformationalVersion.ZeroCommitSha">
+            <summary>
+            The zero SHA1 is "0000000000000000000000000000000000000000".
+            </summary>
+        </member>
+        <member name="F:CSemVer.InformationalVersion.ZeroCommitDate">
+            <summary>
+            The zero commit date is <see cref="F:System.DateTime.MinValue"/> in <see cref="F:System.DateTimeKind.Utc"/>.
+            </summary>
+        </member>
+        <member name="F:CSemVer.InformationalVersion.ZeroInformationalVersion">
+            <summary>
+            The Zero standard informational version is "0.0.0-0 (0.0.0-0) - SHA1: 0000000000000000000000000000000000000000 - CommitDate: 0001-01-01 00:00:00Z".
+            <para>
+            These default values may be set in a csproj:
+            <code>
+                &lt;Version&gt;0.0.0-0&lt;/Version&gt;
+                &lt;AssemblyVersion&gt;0.0.0&lt;/AssemblyVersion&gt;
+                &lt;FileVersion&gt;0.0.0.0&lt;/FileVersion&gt;
+                &lt;InformationalVersion&gt;0.0.0-0 (0.0.0-0) - SHA1: 0000000000000000000000000000000000000000 - CommitDate: 0001-01-01 00:00:00Z&lt;/InformationalVersion&gt;
+            </code>
+            </para>
+            </summary>
+        </member>
+        <member name="M:CSemVer.InformationalVersion.#ctor(System.String)">
+            <summary>
+            Initializes a new <see cref="T:CSemVer.InformationalVersion"/> by parsing a string.
+            </summary>
+            <param name="informationalVersion">Informational version. Can be null.</param>
+        </member>
+        <member name="P:CSemVer.InformationalVersion.IsValidSyntax">
+            <summary>
+            Gets whether <see cref="P:CSemVer.InformationalVersion.OriginalInformationalVersion"/> has been sucessfully parsed:
+            both <see cref="P:CSemVer.InformationalVersion.SemVersion"/> and <see cref="P:CSemVer.InformationalVersion.NuGetVersion"/> are syntaxically valid <see cref="T:CSemVer.SVersion"/>,
+            the <see cref="P:CSemVer.InformationalVersion.CommitSha"/> is a 40 hexadecimal string and <see cref="P:CSemVer.InformationalVersion.CommitDate"/> has been successfully parsed.
+            </summary>
+        </member>
+        <member name="P:CSemVer.InformationalVersion.ParseErrorMessage">
+            <summary>
+            Gets an error message whenever <see cref="P:CSemVer.InformationalVersion.IsValidSyntax"/> is true.
+            Null otherwise.
+            </summary>
+        </member>
+        <member name="P:CSemVer.InformationalVersion.OriginalInformationalVersion">
+            <summary>
+            Gets the original informational (can be null).
+            </summary>
+        </member>
+        <member name="P:CSemVer.InformationalVersion.RawSemVersion">
+            <summary>
+            Gets the semantic version string extracted from <see cref="P:CSemVer.InformationalVersion.OriginalInformationalVersion"/>. 
+            Null if the OriginalInformationalVersion attribute was not standard.
+            </summary>
+        </member>
+        <member name="P:CSemVer.InformationalVersion.SemVersion">
+            <summary>
+            Gets the parsed <see cref="P:CSemVer.InformationalVersion.RawSemVersion"/> (that may be not <see cref="P:CSemVer.SVersion.IsValidSyntax"/>) 
+            or null if the OriginalInformationalVersion attribute was not standard.
+            </summary>
+        </member>
+        <member name="P:CSemVer.InformationalVersion.RawNuGetVersion">
+            <summary>
+            Gets the NuGet version extracted from the <see cref="P:CSemVer.InformationalVersion.OriginalInformationalVersion"/>.
+            Null if the OriginalInformationalVersion attribute was not standard.
+            </summary>
+        </member>
+        <member name="P:CSemVer.InformationalVersion.NuGetVersion">
+            <summary>
+            Gets the parsed <see cref="P:CSemVer.InformationalVersion.RawNuGetVersion"/> (that may be not <see cref="P:CSemVer.SVersion.IsValidSyntax"/>) 
+            or null if the OriginalInformationalVersion attribute was not standard.
+            </summary>
+        </member>
+        <member name="P:CSemVer.InformationalVersion.CommitSha">
+            <summary>
+            Gets the SHA1 extracted from the <see cref="P:CSemVer.InformationalVersion.OriginalInformationalVersion"/>.
+            Null if the OriginalInformationalVersion attribute was not standard.
+            </summary>
+        </member>
+        <member name="P:CSemVer.InformationalVersion.CommitDate">
+            <summary>
+            Gets the commit date  extracted from the <see cref="T:CSemVer.InformationalVersion"/>.
+            <see cref="F:System.DateTime.MinValue"/> if the OriginalInformationalVersion attribute was not standard.
+            This date is required to be in Utc in "u" DateTime format.
+            </summary>
+        </member>
+        <member name="M:CSemVer.InformationalVersion.ToString">
+            <summary>
+            Overridden to return the <see cref="P:CSemVer.InformationalVersion.ParseErrorMessage"/> or the <see cref="P:CSemVer.InformationalVersion.OriginalInformationalVersion"/>.
+            </summary>
+            <returns>The textual representation.</returns>
+        </member>
+        <member name="M:CSemVer.InformationalVersion.Parse(System.String)">
+            <summary>
+            Parses the given string. Throws an <see cref="T:System.ArgumentException"/> if the syntax is invalid.
+            </summary>
+            <param name="s">The string to parse.</param>
+            <returns>A <see cref="P:CSemVer.InformationalVersion.IsValidSyntax"/> informational version.</returns>
+        </member>
+        <member name="M:CSemVer.InformationalVersion.BuildInformationalVersion(System.String,System.String,System.String,System.DateTime)">
+            <summary>
+            Builds a standard Informational version string.
+            </summary>
+            <param name="semVer">The semantic version. Must be not null nor empty (no syntaxic validation is done).</param>
+            <param name="nugetVer">The nuget version. Must be not null nor empty (no syntaxic validation is done).</param>
+            <param name="commitSha">The SHA1 of the commit (must be 40 hex digits).</param>
+            <param name="commitDateUtc">The commit date (must be in UTC).</param>
+            <returns>The informational version.</returns>
+        </member>
+        <member name="T:CSemVer.SVersion">
+            <summary>
+            Semantic version implementation.
+            Strictly conforms to http://semver.org/ v2.0.0 with a capture of the <see cref="P:CSemVer.SVersion.ParseErrorMessage"/>
+            when <see cref="P:CSemVer.SVersion.IsValidSyntax"/> is false.
+            </summary>
+        </member>
+        <member name="F:CSemVer.SVersion.ZeroVersion">
+            <summary>
+            The zero version is "0.0.0-0". It is syntaxically valid and 
+            its precedence is greater than null and lower than any other syntaxically valid <see cref="T:CSemVer.SVersion"/>.
+            </summary>
+        </member>
+        <member name="M:CSemVer.SVersion.#ctor(System.Int32,System.Int32,System.Int32,System.String,System.String,System.Boolean)">
+            <summary>
+            Initializes a new instance of the <see cref="T:CSemVer.SVersion" /> class.
+            </summary>
+            <param name="major">The major version.</param>
+            <param name="minor">The minor version.</param>
+            <param name="patch">The patch version.</param>
+            <param name="prerelease">The prerelease version ("alpha", "rc.1.2", etc.).</param>
+            <param name="buildMetaData">The build meta data.</param>
+            <param name="checkBuildMetaDataSyntax">False to opt-out of strict <see cref="P:CSemVer.SVersion.BuildMetaData"/> compliance.</param>
+        </member>
+        <member name="P:CSemVer.SVersion.Major">
+            <summary>
+            Gets the major version.
+            </summary>
+        </member>
+        <member name="P:CSemVer.SVersion.Minor">
+            <summary>
+            Gets the minor version.
+            </summary>
+        </member>
+        <member name="P:CSemVer.SVersion.Patch">
+            <summary>
+            Gets the patch version.
+            </summary>
+        </member>
+        <member name="P:CSemVer.SVersion.Prerelease">
+            <summary>
+            Gets the pre-release version.
+            </summary>
+        </member>
+        <member name="P:CSemVer.SVersion.BuildMetaData">
+            <summary>
+            Gets the build version.
+            </summary>
+        </member>
+        <member name="P:CSemVer.SVersion.ParseErrorMessage">
+            <summary>
+            An error message that describes the error if <see cref="P:CSemVer.SVersion.IsValidSyntax"/> is false. Null otherwise.
+            </summary>
+        </member>
+        <member name="P:CSemVer.SVersion.IsValidSyntax">
+            <summary>
+            Gets whether this <see cref="T:CSemVer.SVersion"/> has no <see cref="P:CSemVer.SVersion.ParseErrorMessage"/>.
+            </summary>
+        </member>
+        <member name="P:CSemVer.SVersion.IsZeroVersion">
+            <summary>
+            Gets whether this version is a <see cref="F:CSemVer.SVersion.ZeroVersion"/>.
+            </summary>
+        </member>
+        <member name="F:CSemVer.SVersion.Text">
+            <summary>
+            The text is available even if <see cref="P:CSemVer.SVersion.IsValidSyntax"/> is false.
+            It is null if and only if the original parsed string was null.
+            </summary>
+        </member>
+        <member name="M:CSemVer.SVersion.TryParse(System.String)">
+            <summary>
+            Parses the specified string to a semantic version and returns a <see cref="T:CSemVer.SVersion"/> that 
+            may not be <see cref="P:CSemVer.SVersion.IsValidSyntax"/>.
+            </summary>
+            <param name="s">The string to parse.</param>
+            <returns>The SVersion object that may not be <see cref="P:CSemVer.SVersion.IsValidSyntax"/>.</returns>
+        </member>
+        <member name="M:CSemVer.SVersion.Parse(System.String)">
+            <summary>
+            Parses the specified string to a semantic version and throws an <see cref="T:System.ArgumentException"/> 
+            it the resulting <see cref="T:CSemVer.SVersion"/> is not <see cref="P:CSemVer.SVersion.IsValidSyntax"/>.
+            </summary>
+            <param name="s">The string to parse.</param>
+            <returns>The SVersion object.</returns>
+        </member>
+        <member name="M:CSemVer.SVersion.ToString">
+            <summary>
+            Overridden to return the <see cref="P:CSemVer.SVersion.ParseErrorMessage"/> if not null or the <see cref="F:CSemVer.SVersion.Text"/>.
+            </summary>
+            <returns>The textual representation.</returns>
+        </member>
+        <member name="M:CSemVer.SVersion.CompareTo(CSemVer.SVersion)">
+            <summary>
+            Compares this with another <see cref="T:CSemVer.SVersion"/>.
+            </summary>
+            <param name="other">The other version to compare with this instance.</param>
+            <returns>
+            </returns>
+        </member>
+        <member name="M:CSemVer.SVersion.Equals(System.Object)">
+            <summary>
+            Equality ignore ths <see cref="P:CSemVer.SVersion.BuildMetaData"/>.
+            </summary>
+            <param name="obj">The object to compare.</param>
+            <returns>True if the specified object is equal to this instance; otherwise, false.</returns>
+        </member>
+        <member name="M:CSemVer.SVersion.GetHashCode">
+            <summary>
+            Returns a hash code that ignores the <see cref="P:CSemVer.SVersion.BuildMetaData"/>.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:CSemVer.SVersion.Equals(CSemVer.SVersion)">
+            <summary>
+            Versions are equal if and only if <see cref="P:CSemVer.SVersion.IsValidSyntax"/>, <see cref="P:CSemVer.SVersion.Major"/>, <see cref="P:CSemVer.SVersion.Minor"/>,
+            <see cref="P:CSemVer.SVersion.Patch"/> and <see cref="P:CSemVer.SVersion.Prerelease"/> are equals. <see cref="P:CSemVer.SVersion.BuildMetaData"/> is ignored.
+            No other members are used for equality and comparison.
+            </summary>
+            <param name="other">Other version.</param>
+            <returns>True if they are the same regardless of <see cref="P:CSemVer.SVersion.BuildMetaData"/>.</returns>
+        </member>
+        <member name="M:CSemVer.SVersion.op_Equality(CSemVer.SVersion,CSemVer.SVersion)">
+            <summary>
+            Implements == operator.
+            </summary>
+            <param name="x">First tag.</param>
+            <param name="y">Second tag.</param>
+            <returns>True if they are equal.</returns>
+        </member>
+        <member name="M:CSemVer.SVersion.op_GreaterThan(CSemVer.SVersion,CSemVer.SVersion)">
+            <summary>
+            Implements &gt; operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if x is greater than y.</returns>
+        </member>
+        <member name="M:CSemVer.SVersion.op_GreaterThanOrEqual(CSemVer.SVersion,CSemVer.SVersion)">
+            <summary>
+            Implements &lt; operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if x is lower than y.</returns>
+        </member>
+        <member name="M:CSemVer.SVersion.op_Inequality(CSemVer.SVersion,CSemVer.SVersion)">
+            <summary>
+            Implements != operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if they are not equal.</returns>
+        </member>
+        <member name="M:CSemVer.SVersion.op_LessThanOrEqual(CSemVer.SVersion,CSemVer.SVersion)">
+            <summary>
+            Implements &lt;= operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if x is lower than or equal to y.</returns>
+        </member>
+        <member name="M:CSemVer.SVersion.op_LessThan(CSemVer.SVersion,CSemVer.SVersion)">
+            <summary>
+            Implements &lt; operator.
+            </summary>
+            <param name="x">First version.</param>
+            <param name="y">Second version.</param>
+            <returns>True if x is lower than y.</returns>
+        </member>
+    </members>
+</doc>

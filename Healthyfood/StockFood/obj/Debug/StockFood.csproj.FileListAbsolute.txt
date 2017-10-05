@@ -1,0 +1,5 @@
+C:\Users\victor\Documents\Healthyfood\Healthyfood\StockFood\bin\Debug\StockFood.dll
+C:\Users\victor\Documents\Healthyfood\Healthyfood\StockFood\bin\Debug\StockFood.pdb
+C:\Users\victor\Documents\Healthyfood\Healthyfood\StockFood\obj\Debug\StockFood.csprojResolveAssemblyReference.cache
+C:\Users\victor\Documents\Healthyfood\Healthyfood\StockFood\obj\Debug\StockFood.dll
+C:\Users\victor\Documents\Healthyfood\Healthyfood\StockFood\obj\Debug\StockFood.pdb

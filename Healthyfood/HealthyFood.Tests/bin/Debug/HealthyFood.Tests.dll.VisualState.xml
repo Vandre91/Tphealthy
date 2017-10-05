@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<VisualState xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ShowCheckBoxes="false">
+  <TopNode>[0-1038]C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\HealthyFood.Tests.dll</TopNode>
+  <SelectedNode>[0-1038]C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\HealthyFood.Tests.dll</SelectedNode>
+  <ExcludeCategories>false</ExcludeCategories>
+  <Nodes>
+    <Node UniqueName="[0-1038]C:\Users\victor\Documents\Healthyfood\Healthyfood\HealthyFood.Tests\bin\Debug\HealthyFood.Tests.dll" Expanded="true" />
+    <Node UniqueName="[0-1039]HealthyFoodTests" Expanded="true" />
+    <Node UniqueName="[0-1020]HealthyFoodTests.TCreateRecipe" Expanded="true" />
+    <Node UniqueName="[0-1000]HealthyFoodTests.TCreateUsers" Expanded="true" />
+    <Node UniqueName="[0-1028]HealthyFoodTests.TRecipesManagement" Expanded="true" />
+    <Node UniqueName="[0-1013]HealthyFoodTests.TStocks" Expanded="true" />
+  </Nodes>
+</VisualState>

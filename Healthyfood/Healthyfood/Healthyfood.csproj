@@ -1,0 +1,388 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{5155CC87-0506-4CAD-B1DB-D84462F19412}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Healthyfood</RootNamespace>
+    <AssemblyName>Healthyfood</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <PublishUrl>publier\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>logo_H-F.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.Speech" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Menu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Menu.Designer.cs">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Add_Menu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Add_Menu.Designer.cs">
+      <DependentUpon>UserControl_Add_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Menu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Menu.Designer.cs">
+      <DependentUpon>UserControl_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Modify_Menu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Modify_Menu.Designer.cs">
+      <DependentUpon>UserControl_Modify_Menu.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Modify_Profil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Modify_Profil.Designer.cs">
+      <DependentUpon>UserControl_Modify_Profil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Profil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Profil.Designer.cs">
+      <DependentUpon>UserControl_Profil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_RecipeExpiration.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_RecipeExpiration.Designer.cs">
+      <DependentUpon>UserControl_RecipeExpiration.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Recipe_Healthy.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Recipe_Healthy.Designer.cs">
+      <DependentUpon>UserControl_Recipe_Healthy.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Recipe_Utilisateur.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Recipe_Utilisateur.Designer.cs">
+      <DependentUpon>UserControl_Recipe_Utilisateur.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Reserve.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Reserve.Designer.cs">
+      <DependentUpon>UserControl_Reserve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Recipe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Recipe.Designer.cs">
+      <DependentUpon>UserControl_Recipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Reserve_Add_Remove.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Reserve_Add_Remove.Designer.cs">
+      <DependentUpon>UserControl_Reserve_Add_Remove.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Show_Profil.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Show_Profil.Designer.cs">
+      <DependentUpon>UserControl_Show_Profil.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Show_Reserve.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Show_Reserve.Designer.cs">
+      <DependentUpon>UserControl_Show_Reserve.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Show_Reserve2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Show_Reserve2.Designer.cs">
+      <DependentUpon>UserControl_Show_Reserve2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_World_Recipe.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_World_Recipe.Designer.cs">
+      <DependentUpon>UserControl_World_Recipe.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UserControl_Your_Recipes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UserControl_Your_Recipes.Designer.cs">
+      <DependentUpon>UserControl_Your_Recipes.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Menu.resx">
+      <DependentUpon>Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Add_Menu.resx">
+      <DependentUpon>UserControl_Add_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Menu.resx">
+      <DependentUpon>UserControl_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Modify_Menu.resx">
+      <DependentUpon>UserControl_Modify_Menu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Modify_Profil.resx">
+      <DependentUpon>UserControl_Modify_Profil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Profil.resx">
+      <DependentUpon>UserControl_Profil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Recipe.resx">
+      <DependentUpon>UserControl_Recipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_RecipeExpiration.resx">
+      <DependentUpon>UserControl_RecipeExpiration.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Recipe_Healthy.resx">
+      <DependentUpon>UserControl_Recipe_Healthy.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Recipe_Utilisateur.resx">
+      <DependentUpon>UserControl_Recipe_Utilisateur.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Reserve.resx">
+      <DependentUpon>UserControl_Reserve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Reserve_Add_Remove.resx">
+      <DependentUpon>UserControl_Reserve_Add_Remove.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Show_Profil.resx">
+      <DependentUpon>UserControl_Show_Profil.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Show_Reserve.resx">
+      <DependentUpon>UserControl_Show_Reserve.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Show_Reserve2.resx">
+      <DependentUpon>UserControl_Show_Reserve2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_World_Recipe.resx">
+      <DependentUpon>UserControl_World_Recipe.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserControl_Your_Recipes.resx">
+      <DependentUpon>UserControl_Your_Recipes.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="appveyor.yml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\collision-wallpaper-1366x768.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logo H-F.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Recettes.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Refrigerateur.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Utilisateur.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\StockFood\StockFood.csproj">
+      <Project>{d00722a5-a98b-4402-a9bc-5058f907cfd2}</Project>
+      <Name>StockFood</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 et x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuisto.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuisto1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bani.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bani2.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mario-docteur.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mario-docteur1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carte-de-sourire-de-fixation-de-chef-de-cuisine-de-dessin-anim-23698262.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carte-de-sourire-de-fixation-de-chef-de-cuisine-de-dessin-anim-236982621.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\carte-de-sourire-de-fixation-de-chef-de-cuisine-de-dessin-anim-236982622.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bani21.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bani22.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bani23.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\bani24.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backshowprofil.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\backshowprofil1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\profilback.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fond.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\food.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fond1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\users1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\food1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\add.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\fridge.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\liste.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\cuisine.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\chef.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\santé.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Monde.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesrecettes.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mesrecettes1.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\mangezvite.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="logo_H-F.ico" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
