@@ -22,3 +22,6 @@ C:\Users\victor\Documents\Intech\PI\S3\Healthyfood\Healthyfood\CodeCakeBuilder\b
 C:\Users\victor\Documents\Intech\PI\S3\Healthyfood\Healthyfood\CodeCakeBuilder\obj\Release\CodeCakeBuilder.csprojResolveAssemblyReference.cache
 C:\Users\victor\Documents\Intech\PI\S3\Healthyfood\Healthyfood\CodeCakeBuilder\obj\Release\CodeCakeBuilder.exe
 C:\Users\victor\Documents\Intech\PI\S3\Healthyfood\Healthyfood\CodeCakeBuilder\obj\Release\CodeCakeBuilder.pdb
+C:\Users\victor\Documents\Intech\PI\Tphealthy\Healthyfood\CodeCakeBuilder\obj\Release\CodeCakeBuilder.csprojResolveAssemblyReference.cache
+C:\Users\victor\Documents\Intech\PI\Tphealthy\Healthyfood\CodeCakeBuilder\obj\Release\CodeCakeBuilder.exe
+C:\Users\victor\Documents\Intech\PI\Tphealthy\Healthyfood\CodeCakeBuilder\obj\Release\CodeCakeBuilder.pdb
